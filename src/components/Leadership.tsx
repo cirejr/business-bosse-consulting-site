@@ -17,11 +17,11 @@ export function Leadership() {
             className="relative"
           >
             <div className="aspect-[4/5] bg-gray-100 relative overflow-hidden grayscale hover:grayscale-0 transition-all duration-700">
-              <img
-                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1974&auto=format&fit=crop"
-                alt="Franck Bossé"
-                className="w-full h-full object-cover"
-              />
+                <img
+                  src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/project-uploads/9934f8f5-a1d2-4ba9-af6d-24a6d93a608e/image-1769380162959.png?width=8000&height=8000&resize=contain"
+                  alt="Franck Bossé"
+                  className="w-full h-full object-cover"
+                />
               {/* Decorative Frame */}
               <div className="absolute inset-4 border border-white/20 pointer-events-none" />
             </div>
