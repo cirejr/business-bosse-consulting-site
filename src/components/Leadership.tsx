@@ -16,7 +16,7 @@ export function Leadership() {
             transition={{ duration: 0.8 }}
             className="relative"
           >
-            <div className="aspect-[4/5] bg-gray-100 relative overflow-hidden grayscale hover:grayscale-0 transition-all duration-700">
+            <div className="aspect-[4/5] bg-gray-100 relative overflow-hidden">
                 <img
                   src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/project-uploads/9934f8f5-a1d2-4ba9-af6d-24a6d93a608e/image-1769380162959.png?width=8000&height=8000&resize=contain"
                   alt="Franck Bossé"
