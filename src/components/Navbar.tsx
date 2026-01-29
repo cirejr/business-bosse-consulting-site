@@ -75,7 +75,7 @@ export function Navbar() {
             variant={isScrolled ? "default" : "outline"} 
             className={cn(
               "rounded-none px-6",
-              !isScrolled && "text-white border-white hover:bg-white hover:text-primary"
+              !isScrolled && "border-white hover:bg-white hover:text-primary"
             )}
           >
             Parlons-en
