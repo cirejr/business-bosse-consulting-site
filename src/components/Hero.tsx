@@ -75,7 +75,7 @@ export function Hero() {
                   <Button size="lg" className="rounded-none px-8 py-6 text-lg bg-accent hover:bg-accent/90 text-primary border-none">
                     {slides[currentSlide].cta}
                   </Button>
-                  <Button size="lg" variant="outline" className="rounded-none px-8 py-6 text-lg text-white border-white hover:bg-white hover:text-primary">
+                  <Button size="lg" variant="outline" className="rounded-none px-8 py-6 text-lg border-white hover:bg-white hover:text-primary">
                     Nous contacter <ArrowRight className="ml-2 h-5 w-5" />
                   </Button>
                 </div>
