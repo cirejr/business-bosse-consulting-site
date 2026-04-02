@@ -17,7 +17,7 @@ const playfair = Playfair_Display({
 export const metadata: Metadata = {
   title: "Business & Bosse Consulting (B&BC)",
   description:
-    "African management consulting and IT solutions firm operating in Senegal and Côte d’Ivoire.",
+    "African management consulting and IT solutions firm operating in Senegal and Côte d'Ivoire.",
 };
 
 export default function PublicLayout({

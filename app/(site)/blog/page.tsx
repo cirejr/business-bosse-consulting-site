@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import {
   getPublishedArticles,
   getAllCategories,
@@ -11,13 +12,7 @@ import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
-export default async function BlogPage({
-  searchParams,
-}: {
-  searchParams: Promise<{ category?: string; search?: string }>;
-}) {
-  const { category, search } = await searchParams;
-
+async function BlogList({ category, search }: { category?: string; search?: string }) {
   let articles;
 
   if (category) {
@@ -140,4 +135,42 @@ export default async function BlogPage({
       </div>
     </>
   );
+}
+
+function BlogListFallback() {
+  return (
+    <div className="min-h-screen bg-gray-50">
+      <div className="h-64 bg-gray-200 animate-pulse" />
+      <div className="container mx-auto px-4 py-12">
+        <div className="max-w-4xl mx-auto space-y-8">
+          <div className="h-10 w-48 bg-gray-200 animate-pulse rounded" />
+          <div className="flex gap-2">
+            <div className="h-8 w-16 bg-gray-200 animate-pulse rounded-full" />
+            <div className="h-8 w-20 bg-gray-200 animate-pulse rounded-full" />
+            <div className="h-8 w-24 bg-gray-200 animate-pulse rounded-full" />
+          </div>
+          <div className="space-y-4">
+            {[1, 2, 3].map((i) => (
+              <div key={i} className="h-48 bg-gray-200 animate-pulse rounded-lg" />
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default function BlogPage(props: {
+  searchParams: Promise<{ category?: string; search?: string }>;
+}) {
+  return (
+    <Suspense fallback={<BlogListFallback />}>
+      <BlogListWithParams searchParams={props.searchParams} />
+    </Suspense>
+  );
+}
+
+async function BlogListWithParams({ searchParams }: { searchParams: Promise<{ category?: string; search?: string }> }) {
+  const { category, search } = await searchParams;
+  return <BlogList category={category} search={search} />;
 }

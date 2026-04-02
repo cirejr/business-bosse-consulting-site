@@ -1,7 +1,11 @@
-'use server';
-
 import { db } from "@/db";
-import { article, articleCategories, articleTags, category, tag } from "@/db/schema";
+import {
+  article,
+  articleCategories,
+  articleTags,
+  category,
+  tag,
+} from "@/db/schema";
 import { eq, desc, like, and, sql } from "drizzle-orm";
 import { cacheTag, cacheLife } from "next/cache";
 
@@ -11,9 +15,9 @@ interface ArticleFilters {
 }
 
 export async function getPublishedArticles(filters?: ArticleFilters) {
-  'use cache';
-  cacheTag('published-articles');
-  cacheLife('minutes');
+  "use cache";
+  cacheTag("published-articles");
+  cacheLife("minutes");
 
   let query = db
     .select({
@@ -32,9 +36,10 @@ export async function getPublishedArticles(filters?: ArticleFilters) {
 
   if (filters?.search) {
     const searchLower = `%${filters.search.toLowerCase()}%`;
-    return articles.filter(a => 
-      a.title.toLowerCase().includes(searchLower) ||
-      (a.excerpt && a.excerpt.toLowerCase().includes(searchLower))
+    return articles.filter(
+      (a) =>
+        a.title.toLowerCase().includes(searchLower) ||
+        (a.excerpt && a.excerpt.toLowerCase().includes(searchLower)),
     );
   }
 
@@ -42,9 +47,9 @@ export async function getPublishedArticles(filters?: ArticleFilters) {
 }
 
 export async function getArticleWithCategoriesAndTags(slug: string) {
-  'use cache';
+  "use cache";
   cacheTag(`article-${slug}`);
-  cacheLife('minutes');
+  cacheLife("minutes");
 
   const articles = await db
     .select()
@@ -83,25 +88,25 @@ export async function getArticleWithCategoriesAndTags(slug: string) {
 }
 
 export async function getAllCategories() {
-  'use cache';
-  cacheTag('categories');
-  cacheLife('minutes');
+  "use cache";
+  cacheTag("categories");
+  cacheLife("minutes");
 
   return db.select().from(category).orderBy(category.name);
 }
 
 export async function getAllTags() {
-  'use cache';
-  cacheTag('tags');
-  cacheLife('minutes');
+  "use cache";
+  cacheTag("tags");
+  cacheLife("minutes");
 
   return db.select().from(tag).orderBy(tag.name);
 }
 
 export async function getArticlesByCategory(categorySlug: string) {
-  'use cache';
+  "use cache";
   cacheTag(`category-${categorySlug}`);
-  cacheLife('minutes');
+  cacheLife("minutes");
 
   const categoryRows = await db
     .select()
@@ -130,8 +135,8 @@ export async function getArticlesByCategory(categorySlug: string) {
     .where(
       and(
         eq(article.status, "published"),
-        sql`${article.id} IN ${articleIds.map(a => a.articleId)}`
-      )
+        sql`${article.id} IN ${articleIds.map((a) => a.articleId)}`,
+      ),
     )
     .orderBy(desc(article.publishedAt));
 

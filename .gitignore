@@ -19,6 +19,7 @@
 
 # production
 /build
+/dist
 
 # misc
 .DS_Store
@@ -39,3 +40,5 @@ next-env.d.ts
 
 .env.*
 /public/uploads/*
+
+/docs/bbcons-wp-db-dump.sql

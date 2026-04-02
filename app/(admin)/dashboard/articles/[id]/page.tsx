@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import { getArticle, getAllCategories, getAllTags, getArticleCategories, getArticleTags } from "@/lib/data/articles";
 import { getAllMedia } from "@/lib/data/media";
 import { notFound } from "next/navigation";
@@ -7,9 +8,7 @@ interface PageProps {
   params: Promise<{ id: string }>;
 }
 
-export default async function EditArticlePage({ params }: PageProps) {
-  const { id } = await params;
-  
+async function ArticleFormContent({ id }: { id: string }) {
   const [articleData, categories, tags, categoryRows, tagRows, media] = await Promise.all([
     getArticle(id),
     getAllCategories(),
@@ -33,5 +32,15 @@ export default async function EditArticlePage({ params }: PageProps) {
       articleTagIds={tagRows}
       isEdit={true} 
     />
+  );
+}
+
+export default async function EditArticlePage({ params }: PageProps) {
+  const { id } = await params;
+
+  return (
+    <Suspense fallback={<div className="p-8 text-center">Loading article...</div>}>
+      <ArticleFormContent id={id} />
+    </Suspense>
   );
 }

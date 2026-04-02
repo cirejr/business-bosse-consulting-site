@@ -4,11 +4,7 @@ import { notFound } from "next/navigation";
 import { ArticleHero } from "@/components/ArticleHero";
 import { ArticleContent } from "@/components/article-content";
 
-interface PageProps {
-  params: Promise<{ slug: string }>;
-}
-
-async function BlogPostContent({ slug }: { slug: string }) {
+async function BlogPost({ slug }: { slug: string }) {
   const articleData = await getArticleWithCategoriesAndTags(slug);
 
   if (!articleData) {
@@ -49,12 +45,25 @@ async function BlogPostContent({ slug }: { slug: string }) {
   );
 }
 
-export default async function BlogPostPage({ params }: PageProps) {
-  const { slug } = await params;
-
+function BlogPostFallback() {
   return (
-    <Suspense fallback={<div className="min-h-screen bg-gray-50" />}>
-      <BlogPostContent slug={slug} />
+    <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="animate-pulse h-96 w-full max-w-3xl bg-gray-200 rounded-lg" />
+    </div>
+  );
+}
+
+export default function BlogPostPage(props: {
+  params: Promise<{ slug: string }>;
+}) {
+  return (
+    <Suspense fallback={<BlogPostFallback />}>
+      <BlogPostWithParams params={props.params} />
     </Suspense>
   );
+}
+
+async function BlogPostWithParams({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  return <BlogPost slug={slug} />;
 }
