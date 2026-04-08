@@ -142,3 +142,92 @@ export async function getArticlesByCategory(categorySlug: string) {
 
   return articles;
 }
+
+interface ArticleFilters {
+  category?: string;
+  search?: string;
+}
+
+type ArticleSelect = {
+  id: string;
+  title: string;
+  slug: string;
+  excerpt: string | null;
+  coverImageUrl: string | null;
+  publishedAt: Date | null;
+  createdAt: Date;
+};
+
+export async function getArticles(filters?: ArticleFilters): Promise<ArticleSelect[]> {
+  "use cache";
+  
+  let articles: ArticleSelect[];
+
+  if (filters?.category) {
+    cacheTag(`category-${filters.category}`);
+    const categoryRows = await db
+      .select()
+      .from(category)
+      .where(eq(category.slug, filters.category));
+
+    if (!categoryRows[0]) {
+      articles = [];
+    } else {
+      const articleIds = await db
+        .select({ articleId: articleCategories.articleId })
+        .from(articleCategories)
+        .where(eq(articleCategories.categoryId, categoryRows[0].id));
+
+      if (articleIds.length === 0) {
+        articles = [];
+      } else {
+        articles = await db
+          .select({
+            id: article.id,
+            title: article.title,
+            slug: article.slug,
+            excerpt: article.excerpt,
+            coverImageUrl: article.coverImageUrl,
+            publishedAt: article.publishedAt,
+            createdAt: article.createdAt,
+          })
+          .from(article)
+          .where(
+            and(
+              eq(article.status, "published"),
+              sql`${article.id} IN ${articleIds.map((a) => a.articleId)}`,
+            ),
+          )
+          .orderBy(desc(article.publishedAt));
+      }
+    }
+  } else {
+    cacheTag("published-articles");
+    articles = await db
+      .select({
+        id: article.id,
+        title: article.title,
+        slug: article.slug,
+        excerpt: article.excerpt,
+        coverImageUrl: article.coverImageUrl,
+        publishedAt: article.publishedAt,
+        createdAt: article.createdAt,
+      })
+      .from(article)
+      .where(eq(article.status, "published"))
+      .orderBy(desc(article.publishedAt));
+  }
+
+  cacheLife("minutes");
+
+  if (filters?.search && articles.length > 0) {
+    const searchLower = filters.search.toLowerCase();
+    articles = articles.filter(
+      (a) =>
+        a.title.toLowerCase().includes(searchLower) ||
+        (a.excerpt && a.excerpt.toLowerCase().includes(searchLower)),
+    );
+  }
+
+  return articles;
+}

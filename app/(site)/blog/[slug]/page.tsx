@@ -1,8 +1,57 @@
 import { Suspense } from 'react';
-import { getArticleWithCategoriesAndTags } from "@/lib/queries/article-queries";
+import { Metadata } from "next";
+import { getArticleWithCategoriesAndTags, getPublishedArticles } from "@/lib/queries/article-queries";
 import { notFound } from "next/navigation";
 import { ArticleHero } from "@/components/ArticleHero";
 import { ArticleContent } from "@/components/article-content";
+
+export async function generateMetadata(props: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const params = await props.params;
+  const article = await getArticleWithCategoriesAndTags(params.slug);
+
+  if (!article) {
+    return {
+      title: "Article non trouvé - Business & Bosse Consulting",
+    };
+  }
+
+  const baseUrl = "https://bbcons.net";
+  const imageUrl = article.coverImageUrl 
+    ? `${baseUrl}${article.coverImageUrl}` 
+    : `${baseUrl}/images/logo_bbcons-7.png`;
+
+  return {
+    title: `${article.title} - Business & Bosse Consulting`,
+    description: article.excerpt || undefined,
+    openGraph: {
+      title: article.title,
+      description: article.excerpt || undefined,
+      url: `${baseUrl}/blog/${article.slug}`,
+      type: "article",
+      publishedTime: article.publishedAt?.toISOString(),
+      authors: ["Business & Bosse Consulting"],
+      images: [
+        {
+          url: imageUrl,
+          width: 1200,
+          height: 630,
+          alt: article.title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: article.title,
+      description: article.excerpt || undefined,
+      images: [imageUrl],
+    },
+    alternates: {
+      canonical: `${baseUrl}/blog/${article.slug}`,
+    },
+  };
+}
 
 async function BlogPost({ slug }: { slug: string }) {
   const articleData = await getArticleWithCategoriesAndTags(slug);
@@ -13,6 +62,32 @@ async function BlogPost({ slug }: { slug: string }) {
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BlogPosting",
+            headline: articleData.title,
+            description: articleData.excerpt,
+            image: articleData.coverImageUrl,
+            datePublished: articleData.publishedAt?.toISOString(),
+            author: {
+              "@type": "Organization",
+              name: "Business & Bosse Consulting",
+              url: "https://bbcons.net",
+            },
+            publisher: {
+              "@type": "Organization",
+              name: "Business & Bosse Consulting",
+              logo: {
+                "@type": "ImageObject",
+                url: "https://bbcons.net/images/logo_bbcons-7.png",
+              },
+            },
+          }),
+        }}
+      />
       <ArticleHero
         title={articleData.title}
         excerpt={articleData.excerpt}
