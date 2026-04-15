@@ -1,18 +1,17 @@
 "use client";
-
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Share } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { IconBrandInstagram, IconBrandLinkedin } from "@tabler/icons-react";
 
 const navLinks = [
   { name: "Accueil", href: "/" },
+  { name: "À propos", href: "/about" },
   { name: "Services", href: "/services" },
   { name: "Blog", href: "/blog" },
-  { name: "À propos", href: "/#about" },
-  { name: "Expertise", href: "/#vision" },
   { name: "Contact", href: "/contact" },
 ];
 
@@ -78,15 +77,17 @@ export function Navbar() {
               {link.name}
             </Link>
           ))}
-          <Button
-            variant={isScrolled ? "default" : "outline"}
-            className={cn(
-              "rounded-none px-6",
-              !isScrolled && "border-white hover:bg-white hover:text-primary",
-            )}
-          >
-            Parlons-en
-          </Button>
+          <Link href="/contact">
+            <Button
+              variant={isScrolled ? "default" : "outline"}
+              className={cn(
+                "rounded-none px-6",
+                !isScrolled && "border-white hover:bg-white hover:text-primary",
+              )}
+            >
+              Parlons-en
+            </Button>
+          </Link>
         </div>
 
         {/* Mobile Toggle */}
@@ -110,31 +111,53 @@ export function Navbar() {
             />
           )}
         </button>
-      </div>
 
-      {/* Mobile Menu */}
-      <AnimatePresence>
-        {mobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="absolute top-full left-0 right-0 bg-white shadow-xl p-6 flex flex-col space-y-4 md:hidden"
-          >
-            {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                href={link.href}
-                onClick={() => setMobileMenuOpen(false)}
-                className="text-lg font-medium text-primary py-2 border-b border-gray-100"
-              >
-                {link.name}
+        {/* Mobile Menu */}
+        <AnimatePresence>
+          {mobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              className="absolute top-full left-0 right-0 bg-white shadow-xl p-6 flex flex-col space-y-4 md:hidden"
+            >
+              {navLinks.map((link) => (
+                <Link
+                  key={link.name}
+                  href={link.href}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="text-lg font-medium text-primary py-2 border-b border-gray-100"
+                >
+                  {link.name}
+                </Link>
+              ))}
+              <div className="flex space-x-4 py-4 border-b border-gray-100">
+                <Link
+                  href="https://www.linkedin.com/company/business-and-bosse-consulting-sarl/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 border border-primary/30 hover:border-accent hover:text-accent transition-colors"
+                  aria-label="LinkedIn"
+                >
+                  <IconBrandLinkedin className="h-5 w-5" />
+                </Link>
+                <Link
+                  href="https://www.instagram.com/b.and.bc/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 border border-primary/30 hover:border-accent hover:text-accent transition-colors"
+                  aria-label="Instagram"
+                >
+                  <IconBrandInstagram className="h-5 w-5" />
+                </Link>
+              </div>
+              <Link href="/contact" className="w-full">
+                <Button className="w-full rounded-none mt-4">Parlons-en</Button>
               </Link>
-            ))}
-            <Button className="w-full rounded-none mt-4">Parlons-en</Button>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
     </nav>
   );
 }

@@ -57,6 +57,10 @@ export const metadata: Metadata = {
       },
     ],
   },
+  icons: {
+    icon: "/favicon.svg",
+    apple: "/favicon.svg",
+  },
   twitter: {
     card: "summary_large_image",
     title: "Business & Bosse Consulting (B&BC)",
@@ -113,7 +117,11 @@ export default function RootLayout({
                 "Transformation digitale",
                 "Stratégie d'entreprise",
               ],
-              sameAs: ["https://www.facebook.com/share/1B6DdxE7qX/"],
+              sameAs: [
+              "https://www.facebook.com/share/1B6DdxE7qX/",
+              "https://www.linkedin.com/company/business-and-bosse-consulting-sarl/",
+              "https://www.instagram.com/b.and.bc/",
+            ],
             }),
           }}
         />

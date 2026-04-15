@@ -31,7 +31,6 @@ export default function ServicesPage() {
             <ExpertConsulting />
             <FinancialConsulting />
             <ServicesCTA />
-            <Footer />
         </main>
     );
 }

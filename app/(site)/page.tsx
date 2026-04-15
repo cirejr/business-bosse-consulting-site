@@ -6,6 +6,7 @@ import { Services } from "@/components/Services";
 import { Values } from "@/components/Values";
 import { Leadership } from "@/components/Leadership";
 import { Footer } from "@/components/Footer";
+import { ServicesCTA } from "@/components/ServicesCTA";
 
 export const metadata: Metadata = {
   title: "Business & Bosse Consulting (B&BC)",
@@ -24,14 +25,14 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
-    return (
-        <main className="min-h-screen">
-            <Hero />
-            <About />
-            <Services />
-            <Values />
-            <Leadership />
-            <Footer />
-        </main>
-    );
+  return (
+    <main className="min-h-screen">
+      <Hero />
+      <About />
+      <Services />
+      <Values />
+      <Leadership />
+      <ServicesCTA />
+    </main>
+  );
 }

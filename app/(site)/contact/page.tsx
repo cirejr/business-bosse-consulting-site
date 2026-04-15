@@ -21,11 +21,10 @@ export const metadata: Metadata = {
 };
 
 export default function ContactPage() {
-    return (
-        <main className="min-h-screen">
-            <ContactHero />
-            <ContactFormSection />
-            <Footer />
-        </main>
-    );
+  return (
+    <main className="min-h-screen">
+      <ContactHero />
+      <ContactFormSection />
+    </main>
+  );
 }

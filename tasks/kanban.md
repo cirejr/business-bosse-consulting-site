@@ -24,3 +24,5 @@
 *   [x] Refactor: Use parallel data fetching with Promise.all
 *   [x] Refactor: Lazy-load TipTap editor
 *   [x] Refactor: Use database filtering instead of JS filtering
+*   [x] Update contact information for Senegal and Côte d'Ivoire offices
+*   [x] Setup email service for contact form using Resend (testing mode)

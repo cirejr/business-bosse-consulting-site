@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
@@ -12,6 +13,7 @@ const slides = [
     description: "Nous façonnons l'avenir du business en Afrique avec des solutions innovantes et durables.",
     image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop",
     cta: "Découvrir nos services",
+    ctaLink: "/services",
   },
   {
     id: 2,
@@ -19,6 +21,7 @@ const slides = [
     description: "Une approche méthodique pour propulser votre croissance et sécuriser vos opérations.",
     image: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069&auto=format&fit=crop",
     cta: "Nos expertises",
+    ctaLink: "/services",
   },
   {
     id: 3,
@@ -26,6 +29,7 @@ const slides = [
     description: "Présents au Sénégal et en Côte d'Ivoire pour servir l'ensemble du marché ouest-africain.",
     image: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070&auto=format&fit=crop",
     cta: "Nous contacter",
+    ctaLink: "/contact",
   },
 ];
 
@@ -72,12 +76,16 @@ export function Hero() {
                   {slides[currentSlide].description}
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
-                  <Button size="lg" className="rounded-none px-8 py-6 text-lg bg-accent hover:bg-accent/90 text-primary border-none">
-                    {slides[currentSlide].cta}
-                  </Button>
-                  <Button size="lg" variant="outline" className="rounded-none px-8 py-6 text-lg border-white hover:bg-white hover:text-primary">
-                    Nous contacter <ArrowRight className="ml-2 h-5 w-5" />
-                  </Button>
+                  <Link href={slides[currentSlide].ctaLink || "/services"}>
+                    <Button size="lg" className="rounded-none px-8 py-6 text-lg bg-accent hover:bg-accent/90 text-primary border-none">
+                      {slides[currentSlide].cta}
+                    </Button>
+                  </Link>
+                  <Link href="/contact">
+                    <Button size="lg" variant="outline" className="rounded-none px-8 py-6 text-lg border-white hover:bg-white hover:text-primary">
+                      Nous contacter <ArrowRight className="ml-2 h-5 w-5" />
+                    </Button>
+                  </Link>
                 </div>
               </motion.div>
             </div>

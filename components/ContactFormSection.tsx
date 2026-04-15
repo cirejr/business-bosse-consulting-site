@@ -6,23 +6,97 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
+import { useState } from "react";
 
 const contactDetails = [
   {
     country: "Sénégal",
-    address: "Dakar, Plateau, Rue Carnot",
-    phone: "+221 33 000 00 00",
-    email: "contact.sn@bbc.com",
+    address: "CITE RADIEUSE RUFISQUE DAKAR LOT N°11",
+    phone: "+221 77 181 78 78",
+    email: "contact.sen@bbcons.net",
   },
   {
     country: "Côte d'Ivoire",
-    address: "Abidjan, Cocody Ambassades",
-    phone: "+225 27 00 00 00 00",
-    email: "contact.ci@bbc.com",
+    address: "CITE PRESSE RIVIERA PALMERAIE VILLA N° 316, COCODY, Abidjan, Côte d'Ivoire",
+    phone: "+225 07 13 59 55 27",
+    email: "contact.ci@bbcons.net",
   },
 ];
 
 export function ContactFormSection() {
+  const [formData, setFormData] = useState({
+    firstname: "",
+    lastname: "",
+    email: "",
+    company: "",
+    subject: "",
+    message: "",
+  });
+  
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<{ 
+    type: "success" | "error" | null; 
+    message: string 
+  }>({ type: null, message: "" });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    // Basic client-side validation
+    if (!formData.firstname || !formData.lastname || !formData.email || !formData.subject || !formData.message) {
+      setSubmitStatus({ type: "error", message: "Please fill in all required fields" });
+      return;
+    }
+    
+    setIsSubmitting(true);
+    setSubmitStatus({ type: null, message: "" });
+    
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+      
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || "Failed to submit form");
+      }
+      
+      const result = await response.json();
+      
+      if (result.success) {
+        setSubmitStatus({ type: "success", message: "Your message has been sent successfully!" });
+        // Reset form
+        setFormData({
+          firstname: "",
+          lastname: "",
+          email: "",
+          company: "",
+          subject: "",
+          message: "",
+        });
+      } else {
+        throw new Error("Failed to submit form");
+      }
+    } catch (error: any) {
+      console.error("Form submission error:", error);
+      setSubmitStatus({ 
+        type: "error", 
+        message: error.message || "An error occurred. Please try again." 
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <section className="py-24 px-6 md:px-12 lg:px-24 bg-white">
       <div className="max-w-7xl mx-auto">
@@ -84,35 +158,100 @@ export function ContactFormSection() {
             className="bg-primary/5 p-8 md:p-12"
           >
             <h2 className="text-3xl font-serif mb-8 text-primary">Envoyez-nous un message</h2>
-            <form className="space-y-6">
+            
+            {/* Status Message */}
+            {submitStatus.type && (
+              <div className={`mb-6 p-4 rounded-lg ${
+                submitStatus.type === "success" 
+                  ? "bg-green-50 border-green-200 text-green-800" 
+                  : "bg-red-50 border-red-200 text-red-800"
+              }`}>
+                {submitStatus.message}
+              </div>
+            )}
+            
+            <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <Label htmlFor="firstname" className="text-xs uppercase tracking-widest text-primary/60 font-semibold">Prénom</Label>
-                  <Input id="firstname" placeholder="Jean" className="rounded-none border-primary/10 bg-white focus:border-accent" />
+                  <Input 
+                    id="firstname"
+                    name="firstname"
+                    placeholder="Jean"
+                    value={formData.firstname}
+                    onChange={handleChange}
+                    className="rounded-none border-primary/10 bg-white focus:border-accent"
+                    disabled={isSubmitting}
+                  />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="lastname" className="text-xs uppercase tracking-widest text-primary/60 font-semibold">Nom</Label>
-                  <Input id="lastname" placeholder="Dupont" className="rounded-none border-primary/10 bg-white focus:border-accent" />
+                  <Input 
+                    id="lastname"
+                    name="lastname"
+                    placeholder="Dupont"
+                    value={formData.lastname}
+                    onChange={handleChange}
+                    className="rounded-none border-primary/10 bg-white focus:border-accent"
+                    disabled={isSubmitting}
+                  />
                 </div>
               </div>
               <div className="space-y-2">
                 <Label htmlFor="email" className="text-xs uppercase tracking-widest text-primary/60 font-semibold">Email professionnel</Label>
-                <Input id="email" type="email" placeholder="jean.dupont@entreprise.com" className="rounded-none border-primary/10 bg-white focus:border-accent" />
+                <Input 
+                  id="email"
+                  name="email"
+                  type="email"
+                  placeholder="jean.dupont@entreprise.com"
+                  value={formData.email}
+                  onChange={handleChange}
+                  className="rounded-none border-primary/10 bg-white focus:border-accent"
+                  disabled={isSubmitting}
+                />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="company" className="text-xs uppercase tracking-widest text-primary/60 font-semibold">Entreprise</Label>
-                <Input id="company" placeholder="Nom de votre entreprise" className="rounded-none border-primary/10 bg-white focus:border-accent" />
+                <Input 
+                  id="company"
+                  name="company"
+                  placeholder="Nom de votre entreprise"
+                  value={formData.company}
+                  onChange={handleChange}
+                  className="rounded-none border-primary/10 bg-white focus:border-accent"
+                  disabled={isSubmitting}
+                />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="subject" className="text-xs uppercase tracking-widest text-primary/60 font-semibold">Sujet</Label>
-                <Input id="subject" placeholder="Comment pouvons-nous vous aider ?" className="rounded-none border-primary/10 bg-white focus:border-accent" />
+                <Input 
+                  id="subject"
+                  name="subject"
+                  placeholder="Comment pouvons-nous vous aider ?"
+                  value={formData.subject}
+                  onChange={handleChange}
+                  className="rounded-none border-primary/10 bg-white focus:border-accent"
+                  disabled={isSubmitting}
+                />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="message" className="text-xs uppercase tracking-widest text-primary/60 font-semibold">Message</Label>
-                <Textarea id="message" placeholder="Détails de votre demande..." className="min-h-[150px] rounded-none border-primary/10 bg-white focus:border-accent" />
+                <Textarea 
+                  id="message"
+                  name="message"
+                  placeholder="Détails de votre demande..."
+                  value={formData.message}
+                  onChange={handleChange}
+                  className="min-h-[150px] rounded-none border-primary/10 bg-white focus:border-accent"
+                  disabled={isSubmitting}
+                />
               </div>
-              <Button className="w-full rounded-none h-14 bg-primary hover:bg-primary/90 text-white font-sans uppercase tracking-[0.2em] text-xs">
-                Envoyer le message <Send className="ml-2 h-4 w-4" />
+              <Button 
+                className="w-full rounded-none h-14 bg-primary hover:bg-primary/90 text-white font-sans uppercase tracking-[0.2em] text-xs"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? "Envoi en cours..." : "Envoyer le message"} 
+                <Send className="ml-2 h-4 w-4" />
               </Button>
             </form>
           </motion.div>

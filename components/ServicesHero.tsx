@@ -28,9 +28,6 @@ export function ServicesHero() {
           <p className="text-lg md:text-xl text-white/80 font-sans font-light leading-relaxed mb-10">
             Business and Bosse Consulting accompagne les entreprises et porteurs de projets à travers des services opérationnels, du conseil stratégique et un accompagnement financier adapté aux réalités locales.
           </p>
-          <Button size="lg" className="rounded-none px-10 h-14 text-base bg-accent text-primary hover:bg-white transition-all">
-            Contactez-nous
-          </Button>
         </motion.div>
       </div>
     </section>

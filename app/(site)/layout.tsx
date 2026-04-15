@@ -3,6 +3,7 @@ import { Manrope, Playfair_Display } from "next/font/google";
 import "../globals.css";
 import { VisualEditsMessenger } from "orchids-visual-edits";
 import { Navbar } from "@/components/Navbar";
+import { Footer } from "@/components/Footer";
 
 const manrope = Manrope({
   variable: "--font-manrope",
@@ -33,6 +34,7 @@ export default function PublicLayout({
         <Navbar />
         {children}
       </body>
+      <Footer />
     </html>
   );
 }
