@@ -1,36 +1,106 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Business & Bosse Consulting (B&BC) — Site Web
 
-## Getting Started
+Site vitrine du cabinet de conseil en gestion et solutions informatiques opérant au Sénégal et en Côte d'Ivoire.
 
-First, run the development server:
+## Tech Stack
+
+- **Framework** — Next.js 16 (App Router)
+- **Styling** — Tailwind CSS 4
+- **Animations** — Framer Motion
+- **Icons** — Lucide React, Tabler Icons
+- **UI Components** — Shadcn/UI (Radix UI)
+- **Formulaires** — Zod, Resend
+- **Typographie** — Manrope (Sans), Playfair Display (Serif)
+- **Base de données** — PostgreSQL via Drizzle ORM
+- **Auth** — Better Auth
+
+## Prérequis
+
+- [Bun](https://bun.sh) (gestionnaire de paquets recommandé)
+
+## Installation
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
+bun install
+```
+
+## Développement
+
+```bash
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Ouvrir [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Build
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+bun run build
+```
 
-## Learn More
+## Variables d'environnement
 
-To learn more about Next.js, take a look at the following resources:
+Copier `.env.example` vers `.env.local` :
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+| Variable | Description |
+|----------|-------------|
+| `DATABASE_URL` | URL de connexion PostgreSQL |
+| `RESEND_API_KEY` | Clé API Resend pour l'envoi d'emails |
+| `CONTACT_FORM_RECIPIENT` | Adresse de réception du formulaire de contact |
+| `UPLOADTHING_TOKEN` | Token UploadThing pour les fichiers média |
+| `BETTER_AUTH_SECRET` | Secret pour Better Auth |
+| `BETTER_AUTH_URL` | URL de base pour Better Auth |
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Architecture
 
-## Deploy on Vercel
+```
+app/
+├── (site)/          # Pages publiques
+│   ├── about/       # À propos
+│   ├── advices/     # Nos conseils (8 services en grille 2 colonnes)
+│   ├── blog/        # Blog
+│   ├── contact/     # Contact avec formulaire & sélecteur de pays
+│   ├── refs/        # Références clients
+│   └── services/    # Services opérationnels
+├── (admin)/         # Dashboard admin
+└── api/             # Routes API (contact, auth, uploadthing)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+components/          # Composants réutilisables
+├── ui/              # Primitives Shadcn/UI
+├── Navbar.tsx       # Navigation avec dropdown "Nos Conseils"
+├── Footer.tsx       # Pied de page (coordonnées Sénégal & Côte d'Ivoire)
+├── ConseilsHero.tsx # Hero de la page conseils
+├── ExpertConsulting.tsx  # Grille 2 colonnes des 8 services conseil
+├── ContactFormSection.tsx # Formulaire avec champ Pays requis
+└── ...
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+public/
+├── customers/       # Logos clients (ASTONE, BECEAO, OLAM, etc.)
+└── images/          # Images du site
+
+lib/
+├── email.ts         # Envoi d'emails via Resend
+└── utils.ts         # Utilitaires
+```
+
+## Pages
+
+| Route | Contenu |
+|-------|---------|
+| `/` | Accueil (Hero, À propos, Services, Valeurs, Leadership) |
+| `/about` | Histoire, Mission, Vision |
+| `/services` | Services opérationnels, conseil fiscal & financier |
+| `/advices` | 8 domaines de conseil en grille 2 colonnes |
+| `/refs` | Références clients avec logos |
+| `/contact` | Coordonnées des bureaux + formulaire avec pays |
+| `/blog` | Articles |
+| `/mentions-legales` | Mentions légales |
+| `/politique-confidentialite` | Politique de confidentialité |
+
+## Conventions de design
+
+- **Thème** : Clair (off-white) avec Primary Deep Navy et Muted Gold en accent
+- **Typographie** : Playfair Display (serif) pour les titres, Manrope (sans-serif) pour le corps
+- **Bordure** : `rounded-none` pour un rendu moderne et net
+- **Animations** : Framer Motion `whileInView` pour les révélations au scroll
+- **Réseaux sociaux** : Facebook, LinkedIn, Instagram (liens dans Footer & Navbar mobile)
