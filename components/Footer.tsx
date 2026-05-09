@@ -34,7 +34,7 @@ export function Footer() {
             </p>
             <div className="flex space-x-4">
               <Link
-                href="https://www.facebook.com/share/1B6DdxE7qX/"
+                href="https://www.facebook.com/businessbosseconsulting/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-2 border border-white/10 hover:border-accent hover:text-accent transition-colors"
@@ -98,15 +98,15 @@ export function Footer() {
             <ul className="space-y-4">
               <li className="flex items-start space-x-3 text-sm text-white/60">
                 <MapPin className="h-5 w-5 text-accent shrink-0" />
-                <span>CITE RADIEUSE RUFISQUE DAKAR LOT N°11</span>
+                <span>Dakar, Rufisque, Cité radieuse lot N° 11</span>
               </li>
               <li className="flex items-center space-x-3 text-sm text-white/60">
                 <Phone className="h-5 w-5 text-accent shrink-0" />
-                <span>+221 77 181 78 78</span>
+                <span>+221 33 815 78 88</span>
               </li>
               <li className="flex items-center space-x-3 text-sm text-white/60">
                 <Mail className="h-5 w-5 text-accent shrink-0" />
-                <span>contact.sen@bbcons.net</span>
+                <span>commercial@bbcons.net</span>
               </li>
             </ul>
           </div>
@@ -118,8 +118,7 @@ export function Footer() {
               <li className="flex items-start space-x-3 text-sm text-white/60">
                 <MapPin className="h-5 w-5 text-accent shrink-0" />
                 <span>
-                  CITE PRESSE RIVIERA PALMERAIE VILLA N° 316, COCODY, Abidjan,
-                  Côte d'Ivoire
+                  Cote d'Ivoire, Cocody, Cité Presse Rivière Palmeraie villa N°316
                 </span>
               </li>
               <li className="flex items-center space-x-3 text-sm text-white/60">
@@ -128,7 +127,7 @@ export function Footer() {
               </li>
               <li className="flex items-center space-x-3 text-sm text-white/60">
                 <Mail className="h-5 w-5 text-accent shrink-0" />
-                <span>contact.ci@bbcons.net</span>
+                <span>commercial@bbcons.net</span>
               </li>
             </ul>
           </div>

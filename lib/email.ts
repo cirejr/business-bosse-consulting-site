@@ -7,6 +7,7 @@ export async function sendContactFormEmail({
   lastname,
   email,
   company,
+  country,
   subject,
   message,
 }: {
@@ -14,11 +15,12 @@ export async function sendContactFormEmail({
   lastname: string;
   email: string;
   company: string;
+  country: string;
   subject: string;
   message: string;
 }) {
   try {
-    const recipient: string = process.env.CONTACT_FORM_RECIPIENT || "vixionhq@gmail.com";
+    const recipient: string = process.env.CONTACT_FORM_RECIPIENT || "commercial@bbcons.net";
     
     const { data, error } = await resend.emails.send({
       from: "Contact Form <onboarding@resend.dev>",
@@ -29,6 +31,7 @@ export async function sendContactFormEmail({
         <p><strong>Name:</strong> ${firstname} ${lastname}</p>
         <p><strong>Email:</strong> ${email}</p>
         <p><strong>Company:</strong> ${company}</p>
+        <p><strong>Country:</strong> ${country}</p>
         <p><strong>Subject:</strong> ${subject}</p>
         <p><strong>Message:</strong></p>
         <p>${message.replace(/\n/g, "<br>")}</p>

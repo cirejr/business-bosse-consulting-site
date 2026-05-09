@@ -3,15 +3,78 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Share } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { IconBrandInstagram, IconBrandLinkedin } from "@tabler/icons-react";
+import {
+  IconBrandFacebook,
+  IconBrandInstagram,
+  IconBrandLinkedin,
+} from "@tabler/icons-react";
+import { Banner } from "./banner";
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+  navigationMenuTriggerStyle,
+} from "@/components/ui/navigation-menu";
 
-const navLinks = [
+type NavItem = {
+  title: string;
+  href?: string;
+  description: string;
+};
+
+type NavLink = {
+  name: string;
+  href?: string;
+  items?: NavItem[];
+};
+
+const navLinks: NavLink[] = [
   { name: "Accueil", href: "/" },
   { name: "À propos", href: "/about" },
-  { name: "Services", href: "/services" },
+  {
+    name: "Nos Conseils",
+    href: "/advices",
+    items: [
+      {
+        title: "Conseils en stratégie",
+        href: "/advices#conseils-strategie",
+        description: "",
+      },
+      {
+        title: "Conseils en Ressources Humaines",
+        href: "/advices#conseils-rh",
+        description: "",
+      },
+      {
+        title: "Conseils en management",
+        href: "/advices#conseils-management",
+        description: "",
+      },
+      {
+        title: "Conseils en finance",
+        href: "/advices#conseils-finance",
+        description: "",
+      },
+      {
+        title: "Conseils en marketing et communication",
+        href: "/advices#conseils-marketing",
+        description: "",
+      },
+      {
+        title: "Conseils en création d'entreprise",
+        href: "/advices#conseils-creation",
+        description: "",
+      },
+    ],
+  },
+  { name: "Nos services", href: "/services" },
   { name: "Blog", href: "/blog" },
+  { name: "Nos références et services faits", href: "/refs" },
   { name: "Contact", href: "/contact" },
 ];
 
@@ -30,13 +93,14 @@ export function Navbar() {
   return (
     <nav
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300 px-6 md:px-12 py-4 mb-8",
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-300 ",
         isScrolled
           ? "bg-white/90 backdrop-blur-md shadow-sm py-3"
           : "bg-transparent",
       )}
     >
-      <div className="max-w-7xl mx-auto flex items-center justify-between">
+      <Banner />
+      <div className="max-w-7xl mx-auto flex items-center justify-between pt-8">
         {/* Logo */}
         <Link href="/" className="flex items-center space-x-2">
           <span
@@ -65,29 +129,43 @@ export function Navbar() {
 
         {/* Desktop Links */}
         <div className="hidden md:flex items-center space-x-8">
-          {navLinks.map((link) => (
-            <Link
-              key={link.name}
-              href={link.href}
-              className={cn(
-                "text-sm font-medium transition-colors hover:text-accent",
-                isScrolled ? "text-primary/80" : "text-white/80",
-              )}
-            >
-              {link.name}
-            </Link>
-          ))}
-          <Link href="/contact">
-            <Button
-              variant={isScrolled ? "default" : "outline"}
-              className={cn(
-                "rounded-none px-6",
-                !isScrolled && "border-white hover:bg-white hover:text-primary",
-              )}
-            >
-              Parlons-en
-            </Button>
-          </Link>
+          <NavigationMenu>
+            <NavigationMenuList>
+              {navLinks.map((link: NavLink) => (
+                <NavigationMenuItem key={link.href ?? link.name}>
+                  {link.items && link.items.length > 0 ? (
+                    <>
+                      <NavigationMenuTrigger
+                        className={`${isScrolled && "text-primary"}`}
+                      >
+                        {link.name}
+                      </NavigationMenuTrigger>
+                      <NavigationMenuContent className="bg-white">
+                        <ul className="w-96">
+                          {link.items.map((item: NavItem, index: number) => (
+                            <ListItem
+                              {...item}
+                              key={`${item.href ?? item.title}-${index}`}
+                            />
+                          ))}
+                        </ul>
+                      </NavigationMenuContent>
+                    </>
+                  ) : (
+                    <NavigationMenuLink
+                      asChild
+                      className={cn(
+                        navigationMenuTriggerStyle(),
+                        `${isScrolled && "text-primary"}`,
+                      )}
+                    >
+                      <Link href={link.href!}>{link.name}</Link>
+                    </NavigationMenuLink>
+                  )}
+                </NavigationMenuItem>
+              ))}
+            </NavigationMenuList>
+          </NavigationMenu>
         </div>
 
         {/* Mobile Toggle */}
@@ -124,7 +202,7 @@ export function Navbar() {
               {navLinks.map((link) => (
                 <Link
                   key={link.name}
-                  href={link.href}
+                  href={link.href!}
                   onClick={() => setMobileMenuOpen(false)}
                   className="text-lg font-medium text-primary py-2 border-b border-gray-100"
                 >
@@ -132,6 +210,15 @@ export function Navbar() {
                 </Link>
               ))}
               <div className="flex space-x-4 py-4 border-b border-gray-100">
+                <Link
+                  href="https://www.facebook.com/businessbosseconsulting/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 border border-primary/30 hover:border-accent hover:text-accent transition-colors"
+                  aria-label="Facebook"
+                >
+                  <IconBrandFacebook className="h-5 w-5" />
+                </Link>
                 <Link
                   href="https://www.linkedin.com/company/business-and-bosse-consulting-sarl/"
                   target="_blank"
@@ -152,12 +239,38 @@ export function Navbar() {
                 </Link>
               </div>
               <Link href="/contact" className="w-full">
-                <Button className="w-full rounded-none mt-4">Parlons-en</Button>
+                <Button className="w-full rounded-none mt-4">Contact</Button>
               </Link>
             </motion.div>
           )}
         </AnimatePresence>
       </div>
     </nav>
+  );
+}
+
+function ListItem({
+  title,
+  description,
+  className,
+  href,
+  ...props
+}: React.ComponentProps<typeof NavigationMenuLink> & NavItem) {
+  return (
+    <NavigationMenuLink
+      className={cn(
+        "w-full flex flex-row gap-x-2 data-[active=true]:focus:bg-accent data-[active=true]:hover:bg-accent data-[active=true]:bg-accent/50 data-[active=true]:text-accent-foreground hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground rounded-sm p-2",
+        className,
+      )}
+      {...props}
+      asChild
+    >
+      <a href={href}>
+        <div className="flex flex-col items-start justify-center">
+          <span className="font-medium">{title}</span>
+          <span className="text-muted-foreground text-xs">{description}</span>
+        </div>
+      </a>
+    </NavigationMenuLink>
   );
 }

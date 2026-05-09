@@ -118,7 +118,7 @@ export default function RootLayout({
                 "Stratégie d'entreprise",
               ],
               sameAs: [
-              "https://www.facebook.com/share/1B6DdxE7qX/",
+              "https://www.facebook.com/businessbosseconsulting/",
               "https://www.linkedin.com/company/business-and-bosse-consulting-sarl/",
               "https://www.instagram.com/b.and.bc/",
             ],

@@ -1,0 +1,37 @@
+"use client";
+
+import { motion } from "framer-motion";
+
+export function ConseilsHero() {
+  return (
+    <section className="relative pt-48 pb-24 px-6 md:px-12 lg:px-24 bg-primary text-white overflow-hidden">
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-accent/20 via-transparent to-transparent" />
+      </div>
+
+      <div className="max-w-7xl mx-auto relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="max-w-3xl"
+        >
+          <h1 className="text-sm uppercase tracking-[0.4em] text-accent font-sans font-bold mb-6">
+            Nos Conseils
+          </h1>
+          <h2 className="text-4xl md:text-6xl font-serif leading-tight mb-8">
+            L&apos;excellence stratégique <br />
+            <span className="italic text-accent">
+              au service de votre structure
+            </span>
+          </h2>
+          <p className="text-lg md:text-xl text-white/80 font-sans font-light leading-relaxed mb-10">
+            B&BC vous accompagne dans vos projets de développement à travers des
+            conseils sur mesure en stratégie, management, finance, marketing et
+            création d&apos;entreprise.
+          </p>
+        </motion.div>
+      </div>
+    </section>
+  );
+}

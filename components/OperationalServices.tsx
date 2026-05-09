@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { HardHat, Droplet, Truck } from "lucide-react";
+import { HardHat, Droplet, Truck, Building2 } from "lucide-react";
 
 const operationalServices = [
   {
@@ -27,11 +27,21 @@ const operationalServices = [
     icon: Truck,
     focus: ["Qualité", "Fiabilité logistique", "Respect des normes sanitaires"],
   },
+  {
+    title: "Commerce général",
+    description: "La vente de matériaux de construction et divers articles.",
+    icon: Building2,
+    points: [
+      "Vente de matériaux de construction",
+      "Fourniture de divers articles",
+      "Distribution & logistique",
+    ],
+  },
 ];
 
 export function OperationalServices() {
   return (
-    <section className="py-24 px-6 md:px-12 lg:px-24 bg-offwhite">
+    <section id="operational" className="py-24 px-6 md:px-12 lg:px-24 bg-offwhite">
       <div className="max-w-7xl mx-auto">
         <div className="mb-16">
           <h2 className="text-sm uppercase tracking-[0.3em] text-accent font-sans font-bold mb-4">

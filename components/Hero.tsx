@@ -10,24 +10,27 @@ const slides = [
   {
     id: 1,
     title: "Accompagner la transformation des entreprises africaines",
-    description: "Nous façonnons l'avenir du business en Afrique avec des solutions innovantes et durables.",
-    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop",
+    description:
+      "Nous façonnons l'avenir du business en Afrique avec des solutions innovantes et durables.",
+    image: "/images-caroussel/01.jpg",
     cta: "Découvrir nos services",
     ctaLink: "/services",
   },
   {
     id: 2,
     title: "Structurer, optimiser, performer",
-    description: "Une approche méthodique pour propulser votre croissance et sécuriser vos opérations.",
-    image: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069&auto=format&fit=crop",
+    description:
+      "Une approche méthodique pour propulser votre croissance et sécuriser vos opérations.",
+    image: "/images-caroussel/02.jpg",
     cta: "Nos expertises",
     ctaLink: "/services",
   },
   {
     id: 3,
     title: "Une expertise locale, une vision régionale",
-    description: "Présents au Sénégal et en Côte d'Ivoire pour servir l'ensemble du marché ouest-africain.",
-    image: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070&auto=format&fit=crop",
+    description:
+      "Présents au Sénégal et en Côte d'Ivoire pour servir l'ensemble du marché ouest-africain.",
+    image: "/images-caroussel/03.jpg",
     cta: "Nous contacter",
     ctaLink: "/contact",
   },
@@ -55,12 +58,12 @@ export function Hero() {
           className="absolute inset-0"
         >
           {/* Background Image with Overlay */}
-          <div 
+          <div
             className="absolute inset-0 bg-cover bg-center transition-transform duration-[10000ms] ease-linear scale-100 animate-slow-zoom"
             style={{ backgroundImage: `url(${slides[currentSlide].image})` }}
           />
           <div className="absolute inset-0 bg-black/50 backdrop-brightness-75" />
-          
+
           {/* Content */}
           <div className="relative h-full flex flex-col justify-center px-6 md:px-12 lg:px-24">
             <div className="max-w-4xl">
@@ -77,12 +80,19 @@ export function Hero() {
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Link href={slides[currentSlide].ctaLink || "/services"}>
-                    <Button size="lg" className="rounded-none px-8 py-6 text-lg bg-accent hover:bg-accent/90 text-primary border-none">
+                    <Button
+                      size="lg"
+                      className="rounded-none px-8 py-6 text-lg bg-accent hover:bg-accent/90 text-primary border-none"
+                    >
                       {slides[currentSlide].cta}
                     </Button>
                   </Link>
                   <Link href="/contact">
-                    <Button size="lg" variant="outline" className="rounded-none px-8 py-6 text-lg border-white hover:bg-white hover:text-primary">
+                    <Button
+                      size="lg"
+                      variant="outline"
+                      className="rounded-none px-8 py-6 text-lg border-white hover:bg-white hover:text-primary"
+                    >
                       Nous contacter <ArrowRight className="ml-2 h-5 w-5" />
                     </Button>
                   </Link>
@@ -100,7 +110,9 @@ export function Hero() {
             key={index}
             onClick={() => setCurrentSlide(index)}
             className={`h-1 transition-all duration-500 ${
-              currentSlide === index ? "w-12 bg-accent" : "w-6 bg-white/30 hover:bg-white/50"
+              currentSlide === index
+                ? "w-12 bg-accent"
+                : "w-6 bg-white/30 hover:bg-white/50"
             }`}
           />
         ))}

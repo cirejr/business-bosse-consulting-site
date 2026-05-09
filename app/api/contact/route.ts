@@ -8,6 +8,7 @@ const contactFormSchema = z.object({
   lastname: z.string().min(1, "Last name is required"),
   email: z.string().email("Invalid email address"),
   company: z.string().optional(),
+  country: z.string().min(1, "Country is required"),
   subject: z.string().min(1, "Subject is required"),
   message: z.string().min(1, "Message is required"),
 });
@@ -25,7 +26,7 @@ export async function POST(request: Request) {
       );
     }
     
-    const { firstname, lastname, email, company, subject, message } = validationResult.data;
+    const { firstname, lastname, email, company, country, subject, message } = validationResult.data;
     
     // Send email
     await sendContactFormEmail({
@@ -33,6 +34,7 @@ export async function POST(request: Request) {
       lastname,
       email,
       company: company || "",
+      country: country || "",
       subject,
       message,
     });
