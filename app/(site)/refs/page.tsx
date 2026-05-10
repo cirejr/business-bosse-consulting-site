@@ -27,9 +27,14 @@ const customers = [
   { name: "SESAG", logo: "/customers/SESAG_logo.png" },
   { name: "BECEAO", logo: "/customers/BCEAO_logo_fr.png" },
   { name: "OLAM", logo: "/customers/olam-logo-new.png" },
-  { name: "SARMATI", logo: null },
+  { name: "CAMC", logo: "/customers/CAMC.png" },
+  { name: "SARMATI", logo: "/customers/SARMATI.png" },
   { name: "MTS", logo: "/customers/MTS.webp" },
-  { name: "ANRAC", logo: null },
+  { name: "DJOLO VITA", logo: "/customers/djolo-vita.png" },
+  { name: "LES PAVES PRO", logo: "/customers/les-paves-pro.png" },
+  { name: "MOMALUX", logo: "/customers/MOMALUX.png" },
+  { name: "SOWENE", logo: "/customers/SOWENE.png" },
+  { name: "ANRAC", logo: "/customers/ANRAC.png" },
 ];
 
 export default function RefsPage() {
@@ -50,7 +55,7 @@ export default function RefsPage() {
                       src={customer.logo}
                       alt={customer.name}
                       fill
-                      className="object-contain p-2 grayscale hover:grayscale-0 transition-all duration-300"
+                      className="object-contain p-2 hover:grayscale-0 transition-all duration-300"
                       sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw"
                     />
                   </div>

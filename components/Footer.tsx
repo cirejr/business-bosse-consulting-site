@@ -118,7 +118,8 @@ export function Footer() {
               <li className="flex items-start space-x-3 text-sm text-white/60">
                 <MapPin className="h-5 w-5 text-accent shrink-0" />
                 <span>
-                  Cote d'Ivoire, Cocody, Cité Presse Rivière Palmeraie villa N°316
+                  Cote d'Ivoire, Cocody, Cité Presse Riviera palmeraie villa
+                  N°316
                 </span>
               </li>
               <li className="flex items-center space-x-3 text-sm text-white/60">

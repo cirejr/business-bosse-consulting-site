@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 import {
   IconBrandFacebook,
@@ -11,6 +11,11 @@ import {
   IconBrandLinkedin,
 } from "@tabler/icons-react";
 import { Banner } from "./banner";
+import {
+  Collapsible,
+  CollapsibleTrigger,
+  CollapsibleContent,
+} from "@/components/ui/collapsible";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -20,6 +25,7 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
+import Image from "next/image";
 
 type NavItem = {
   title: string;
@@ -93,37 +99,25 @@ export function Navbar() {
   return (
     <nav
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300 ",
-        isScrolled
-          ? "bg-white/90 backdrop-blur-md shadow-sm py-3"
-          : "bg-transparent",
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white shadow-sm",
       )}
     >
       <Banner />
-      <div className="max-w-7xl mx-auto flex items-center justify-between pt-8">
+      <div className="max-w-7xl mx-auto flex items-center justify-between pt-2 pb-6">
         {/* Logo */}
-        <Link href="/" className="flex items-center space-x-2">
-          <span
-            className={cn(
-              "text-2xl font-serif font-bold tracking-tighter transition-colors duration-300",
-              isScrolled ? "text-primary" : "text-white",
-            )}
-          >
-            B&BC
-          </span>
-          <div
-            className={cn(
-              "h-6 w-px mx-2",
-              isScrolled ? "bg-primary/20" : "bg-white/20",
-            )}
+        <Link href="/" className="flex items-center justify-center space-x-2">
+          <Image
+            src="/bbcons-logo-no-bg.png"
+            alt="bbcons logo"
+            width={80}
+            height={80}
           />
           <span
             className={cn(
-              "text-[10px] uppercase tracking-[0.2em] font-sans transition-colors duration-300",
-              isScrolled ? "text-primary/70" : "text-white/70",
+              "text-2xl font-serif font-bold tracking-tighter transition-colors duration-300",
             )}
           >
-            Consulting
+            B&BC
           </span>
         </Link>
 
@@ -135,9 +129,7 @@ export function Navbar() {
                 <NavigationMenuItem key={link.href ?? link.name}>
                   {link.items && link.items.length > 0 ? (
                     <>
-                      <NavigationMenuTrigger
-                        className={`${isScrolled && "text-primary"}`}
-                      >
+                      <NavigationMenuTrigger className="text-primary md:text-base">
                         {link.name}
                       </NavigationMenuTrigger>
                       <NavigationMenuContent className="bg-white">
@@ -156,7 +148,7 @@ export function Navbar() {
                       asChild
                       className={cn(
                         navigationMenuTriggerStyle(),
-                        `${isScrolled && "text-primary"}`,
+                        "text-primary md:text-base",
                       )}
                     >
                       <Link href={link.href!}>{link.name}</Link>
@@ -174,19 +166,9 @@ export function Navbar() {
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
         >
           {mobileMenuOpen ? (
-            <X
-              className={cn(
-                "h-6 w-6",
-                isScrolled ? "text-primary" : "text-white",
-              )}
-            />
+            <X className={cn("h-6 w-6 text-primary")} />
           ) : (
-            <Menu
-              className={cn(
-                "h-6 w-6",
-                isScrolled ? "text-primary" : "text-white",
-              )}
-            />
+            <Menu className={cn("h-6 w-6 text-primary")} />
           )}
         </button>
 
@@ -199,16 +181,45 @@ export function Navbar() {
               exit={{ opacity: 0, y: -20 }}
               className="absolute top-full left-0 right-0 bg-white shadow-xl p-6 flex flex-col space-y-4 md:hidden"
             >
-              {navLinks.map((link) => (
-                <Link
-                  key={link.name}
-                  href={link.href!}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="text-lg font-medium text-primary py-2 border-b border-gray-100"
-                >
-                  {link.name}
-                </Link>
-              ))}
+              {navLinks.map((link) => {
+                if (link.items && link.items.length > 0) {
+                  return (
+                    <Collapsible
+                      key={link.name}
+                      className="border-b border-gray-100"
+                    >
+                      <CollapsibleTrigger className="flex w-full items-center justify-between text-lg font-medium text-primary py-2">
+                        {link.name}
+                        <ChevronDown className="h-4 w-4 transition-transform duration-200 data-[state=open]:rotate-180" />
+                      </CollapsibleTrigger>
+                      <CollapsibleContent>
+                        <div className="pb-3 pl-6 space-y-1">
+                          {link.items.map((item) => (
+                            <Link
+                              key={item.title}
+                              href={item.href!}
+                              onClick={() => setMobileMenuOpen(false)}
+                              className="block text-sm text-primary/70 py-1.5 border-l-2 border-accent/30 pl-3 hover:text-accent transition-colors"
+                            >
+                              {item.title}
+                            </Link>
+                          ))}
+                        </div>
+                      </CollapsibleContent>
+                    </Collapsible>
+                  );
+                }
+                return (
+                  <Link
+                    key={link.name}
+                    href={link.href!}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="block text-lg font-medium text-primary py-2 border-b border-gray-100"
+                  >
+                    {link.name}
+                  </Link>
+                );
+              })}
               <div className="flex space-x-4 py-4 border-b border-gray-100">
                 <Link
                   href="https://www.facebook.com/businessbosseconsulting/"

@@ -24,7 +24,7 @@ const contactDetails = [
   },
   {
     country: "Côte d'Ivoire",
-    address: "Cote d'Ivoire, Cocody, Cité Presse Rivière Palmeraie villa N°316",
+    address: "Cote d'Ivoire, Cocody, Cité Presse Riviera palmeraie villa N°316",
     phone: "+225 07 13 59 55 27",
     email: "commercial@bbcons.net",
   },

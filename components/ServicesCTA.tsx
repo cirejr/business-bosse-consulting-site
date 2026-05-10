@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 
 export function ServicesCTA() {
   return (
-    <section className="py-24 px-6 md:px-12 lg:px-24 bg-sidebar-foreground relative overflow-hidden">
+    <section className="py-24 px-6 md:px-12 lg:px-24 bg-accent relative overflow-hidden">
       {/* Background Decorative Element */}
       <div className="absolute top-0 right-0 w-1/3 h-full bg-accent/5 -skew-x-12 transform translate-x-1/2" />
 
@@ -25,7 +25,8 @@ export function ServicesCTA() {
           </p>
           <Button
             size="lg"
-            className="rounded-none px-12 h-16 text-lg bg-accent text-primary hover:bg-white transition-all"
+            variant="outline"
+            className="px-12 h-16 text-lg transition-all"
           >
             Parlons de votre projet
           </Button>

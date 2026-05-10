@@ -26,7 +26,7 @@ export default function MentionsLegalesPage() {
             <ul className="list-disc pl-6 space-y-2 mt-4">
               <li>Dénomination sociale : Business & Bosse Consulting SARL</li>
               <li>Forme juridique : Société à responsabilité limitée (SARL)</li>
-              <li>Capital social : En cours de constitution</li>
+              <li>Capital social : 1.000.000 fcfa</li>
               <li>
                 Siège social : Dakar, Rufisque, Cité radieuse lot N° 11, Sénégal
               </li>

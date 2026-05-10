@@ -65,7 +65,7 @@ export function Hero() {
           <div className="absolute inset-0 bg-black/50 backdrop-brightness-75" />
 
           {/* Content */}
-          <div className="relative h-full flex flex-col justify-center px-6 md:px-12 lg:px-24">
+          <div className="relative h-full flex flex-col justify-center px-6 md:px-12 lg:px-24 pt-24">
             <div className="max-w-4xl">
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
@@ -82,7 +82,7 @@ export function Hero() {
                   <Link href={slides[currentSlide].ctaLink || "/services"}>
                     <Button
                       size="lg"
-                      className="rounded-none px-8 py-6 text-lg bg-accent hover:bg-accent/90 text-primary border-none"
+                      className="px-8 py-6 text-lg hover:bg-white hover:text-primary"
                     >
                       {slides[currentSlide].cta}
                     </Button>
@@ -91,7 +91,7 @@ export function Hero() {
                     <Button
                       size="lg"
                       variant="outline"
-                      className="rounded-none px-8 py-6 text-lg border-white hover:bg-white hover:text-primary"
+                      className="px-8 py-6 text-lg "
                     >
                       Nous contacter <ArrowRight className="ml-2 h-5 w-5" />
                     </Button>
