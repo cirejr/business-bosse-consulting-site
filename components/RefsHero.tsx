@@ -16,17 +16,17 @@ export function RefsHero() {
           transition={{ duration: 0.8 }}
           className="max-w-3xl"
         >
-          <h1 className="text-sm uppercase tracking-[0.4em] text-accent font-sans font-bold mb-6">
+          <h1 className="text-sm uppercase tracking-[0.4em]   font-sans font-bold mb-6">
             Nos Références
           </h1>
           <h2 className="text-4xl md:text-6xl font-serif leading-tight mb-8">
             Ils nous font <br />
-            <span className="italic text-accent">confiance</span>
+            <span className="italic  ">confiance</span>
           </h2>
           <p className="text-lg md:text-xl text-white/80 font-sans font-light leading-relaxed">
-            Nous sommes fiers d&apos;avoir accompagné ces entreprises dans
-            leurs projets de transformation et de développement au Sénégal et
-            en Côte d&apos;Ivoire.
+            Nous sommes fiers d&apos;avoir accompagné ces entreprises dans leurs
+            projets de transformation et de développement au Sénégal et en Côte
+            d&apos;Ivoire.
           </p>
         </motion.div>
       </div>

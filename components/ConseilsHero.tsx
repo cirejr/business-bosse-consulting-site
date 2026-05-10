@@ -16,14 +16,12 @@ export function ConseilsHero() {
           transition={{ duration: 0.8 }}
           className="max-w-3xl"
         >
-          <h1 className="text-sm uppercase tracking-[0.4em] text-accent font-sans font-bold mb-6">
+          <h1 className="text-sm uppercase tracking-[0.4em] font-sans font-bold mb-6">
             Nos Conseils
           </h1>
           <h2 className="text-4xl md:text-6xl font-serif leading-tight mb-8">
             L&apos;excellence stratégique <br />
-            <span className="italic text-accent">
-              au service de votre structure
-            </span>
+            <span className="italic">au service de votre structure</span>
           </h2>
           <p className="text-lg md:text-xl text-white/80 font-sans font-light leading-relaxed mb-10">
             B&BC vous accompagne dans vos projets de développement à travers des

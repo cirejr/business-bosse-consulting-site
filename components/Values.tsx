@@ -32,7 +32,7 @@ export function Values() {
     >
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-20">
-          <h2 className="text-sm uppercase tracking-[0.3em] text-accent font-sans font-bold mb-4">
+          <h2 className="text-sm uppercase tracking-[0.3em] font-sans font-bold mb-4">
             Vision & Valeurs
           </h2>
           <h3 className="text-3xl md:text-5xl font-serif leading-tight">

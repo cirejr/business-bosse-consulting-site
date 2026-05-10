@@ -147,7 +147,7 @@ export function ContactFormSection() {
                           country: detail.country,
                         }))
                       }
-                      className="flex items-start space-x-4 text-left w-full hover:bg-primary/5 p-2 -m-2 transition-colors rounded-none"
+                      className="flex items-start space-x-4 text-left w-full hover:bg-primary/5 py-1 hover:cursor-pointer transition-colors rounded-none"
                     >
                       <div className="p-3 bg-primary/5 text-primary shrink-0">
                         <MapPin className="h-5 w-5" />

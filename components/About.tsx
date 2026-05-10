@@ -24,7 +24,7 @@ export function About() {
               Business & Bosse Consulting : Votre partenaire stratégique pour
               l'émergence africaine.
             </h3>
-            <p className="text-lg text-primary/70 leading-relaxed font-sans font-light">
+            <p className="text-lg text-muted-foreground leading-relaxed font-sans font-light">
               B&BC est un cabinet de conseil en management et solutions
               informatiques de premier plan, dédié à l'accompagnement des
               organisations dans leur transformation. Nous allions expertise
@@ -48,7 +48,7 @@ export function About() {
               <p className="text-sm text-primary/60 uppercase tracking-widest font-sans">
                 D'expérience
               </p>
-              <p className="mt-4 text-primary/80 text-sm">
+              <p className="mt-4 text-muted-foreground text-sm">
                 Une expertise consolidée au service de la performance.
               </p>
             </motion.div>
@@ -66,7 +66,7 @@ export function About() {
               <p className="text-sm text-primary/60 uppercase tracking-widest font-sans">
                 Solutions Complètes
               </p>
-              <p className="mt-4 text-primary/80 text-sm">
+              <p className="mt-4 text-muted-foreground text-sm">
                 L'alliance de la stratégie et de l'innovation technologique.
               </p>
             </motion.div>
@@ -84,7 +84,7 @@ export function About() {
               <p className="text-sm text-primary/60 uppercase tracking-widest font-sans">
                 Présence Régionale
               </p>
-              <p className="mt-4 text-primary/80 text-sm">
+              <p className="mt-4 text-muted-foreground text-sm">
                 Un ancrage local fort pour une vision régionale ambitieuse.
               </p>
             </motion.div>

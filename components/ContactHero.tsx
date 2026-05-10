@@ -12,15 +12,16 @@ export function ContactHero() {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="max-w-3xl"
         >
-          <span className="inline-block text-accent uppercase tracking-[0.3em] text-xs font-semibold mb-6">
+          <span className="inline-block   uppercase tracking-[0.3em] text-xs font-semibold mb-6">
             Contactez-nous
           </span>
           <h1 className="text-5xl md:text-7xl font-serif mb-8 leading-tight">
-            Parlons de votre prochain <span className="italic text-accent">projet</span>.
+            Parlons de votre prochain <span className="italic  ">projet</span>.
           </h1>
           <p className="text-xl text-white/60 font-sans font-light leading-relaxed">
-            Que vous soyez au Sénégal, en Côte d'Ivoire ou ailleurs, nos experts sont prêts à vous accompagner 
-            dans votre transformation stratégique et opérationnelle.
+            Que vous soyez au Sénégal, en Côte d'Ivoire ou ailleurs, nos experts
+            sont prêts à vous accompagner dans votre transformation stratégique
+            et opérationnelle.
           </p>
         </motion.div>
       </div>

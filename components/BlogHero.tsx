@@ -12,16 +12,18 @@ export function BlogHero() {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="max-w-3xl"
         >
-          <span className="inline-block text-accent uppercase tracking-[0.3em] text-xs font-semibold mb-6">
+          <span className="inline-block   uppercase tracking-[0.3em] text-xs font-semibold mb-6">
             Actualités & Insights
           </span>
           <h1 className="text-5xl md:text-7xl font-serif mb-8 leading-tight">
-            Perspectives et <span className="italic text-accent">analyses</span> 
-            <br />sur l'Afrique
+            Perspectives et <span className="italic  ">analyses</span>
+            <br />
+            sur l'Afrique
           </h1>
           <p className="text-xl text-white/60 font-sans font-light leading-relaxed">
-            Découvrez nos réflexions sur la gestion d'entreprise, les opportunités 
-            de marché et les enjeux économiques en Afrique de l'Ouest.
+            Découvrez nos réflexions sur la gestion d'entreprise, les
+            opportunités de marché et les enjeux économiques en Afrique de
+            l'Ouest.
           </p>
         </motion.div>
       </div>

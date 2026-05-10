@@ -18,15 +18,18 @@ export function ServicesHero() {
           transition={{ duration: 0.8 }}
           className="max-w-3xl"
         >
-          <h1 className="text-sm uppercase tracking-[0.4em] text-accent font-sans font-bold mb-6">
+          <h1 className="text-sm uppercase tracking-[0.4em] text-secondary font-sans font-bold mb-6">
             Nos services
           </h1>
           <h2 className="text-4xl md:text-6xl font-serif leading-tight mb-8">
             Expertise locale, <br />
-            <span className="italic text-accent">Vision régionale</span>
+            <span className="italic">Vision régionale</span>
           </h2>
           <p className="text-lg md:text-xl text-white/80 font-sans font-light leading-relaxed mb-10">
-            Business and Bosse Consulting accompagne les entreprises et porteurs de projets à travers des services opérationnels, du conseil stratégique et un accompagnement financier adapté aux réalités locales.
+            Business and Bosse Consulting accompagne les entreprises et porteurs
+            de projets à travers des services opérationnels, du conseil
+            stratégique et un accompagnement financier adapté aux réalités
+            locales.
           </p>
         </motion.div>
       </div>

@@ -11,7 +11,7 @@ export default function PolitiqueConfidentialitePage() {
     <main className="min-h-screen">
       <section className="py-24 px-6 md:px-12 lg:px-24 bg-background">
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-4xl md:text-5xl font-serif text-primary mb-12">
+          <h1 className="text-4xl md:text-5xl font-serif text-primary pt-40 sm:pt-16 mb-12">
             Politique de Confidentialité
           </h1>
 

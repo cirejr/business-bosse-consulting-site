@@ -103,7 +103,7 @@ const expertServices = [
     id: "conseils-creation",
     title: "Conseils en création d'entreprise",
     description:
-      "B&BC les porteurs de projet à créer leur entreprise. Elle vous accompagne à tous les niveaux de la création de votre société.",
+      "B&BC aide les porteurs de projet à créer leur entreprise. Elle vous accompagne à tous les niveaux de la création de votre société.",
     icon: Rocket,
     includes: [
       "Business plan",
@@ -145,14 +145,14 @@ export function ExpertConsulting() {
                 <h4 className="text-xl md:text-2xl font-serif text-primary mb-3">
                   {service.title}
                 </h4>
-                <p className="text-primary/70 font-sans font-light leading-relaxed mb-6 text-sm">
+                <p className="text-muted-foreground font-sans leading-relaxed mb-6 text-sm">
                   {service.description}
                 </p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                   {service.includes.map((item) => (
                     <div
                       key={item}
-                      className="flex items-center text-sm text-primary/80 font-sans"
+                      className="flex items-center text-sm text-muted-foreground font-semibold font-sans"
                     >
                       <div className="w-3 h-[1px] bg-accent mr-2 shrink-0" />
                       <span className="truncate">{item}</span>

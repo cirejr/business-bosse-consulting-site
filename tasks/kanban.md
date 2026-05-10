@@ -26,3 +26,4 @@
 *   [x] Refactor: Use database filtering instead of JS filtering
 *   [x] Update contact information for Senegal and Côte d'Ivoire offices
 *   [x] Setup email service for contact form using Resend (testing mode)
+*   [x] Unify OperationalServices.tsx card rendering (normalize data keys to uniform `tags`, simplify render logic)

@@ -1,7 +1,6 @@
 import { Metadata } from "next";
-import Link from "next/link";
 import { MotionWrapper } from "@/components/MotionWrapper";
-import { Globe, Target, Users, Star, Building2 } from "lucide-react";
+import { Globe, Target, Users, Star } from "lucide-react";
 import Image from "next/image";
 
 export const metadata: Metadata = {
@@ -71,7 +70,7 @@ export default function AboutPage() {
               <h3 className="text-3xl md:text-4xl font-serif text-primary mb-6">
                 Une vision née de l'engagement pour l'Afrique
               </h3>
-              <div className="space-y-4 text-primary/70 leading-relaxed font-sans font-light">
+              <div className="space-y-4 text-muted-foreground leading-relaxed font-sans font-light">
                 <p>
                   Fondé en 2021, Business & Bosse Consulting est né d'une vision
                   simple : accompagner les entreprises africaines dans leur
@@ -119,7 +118,7 @@ export default function AboutPage() {
               <h3 className="text-2xl font-serif text-primary mb-4">
                 Notre Mission
               </h3>
-              <p className="text-primary/70 leading-relaxed font-sans font-light">
+              <p className="text-muted-foreground leading-relaxed font-sans font-light">
                 Accompagner les organisations africaines dans leur
                 transformation stratégique et opérationnelle grâce à des
                 solutions de conseil innovantes et adaptées aux réalités
@@ -131,7 +130,7 @@ export default function AboutPage() {
               <h3 className="text-2xl font-serif text-primary mb-4">
                 Notre Vision
               </h3>
-              <p className="text-primary/70 leading-relaxed font-sans font-light">
+              <p className="text-muted-foreground leading-relaxed font-sans font-light">
                 Devenir le partenaire de référence pour le développement durable
                 des entreprises en Afrique de l'Ouest, en alliant expertise
                 internationale et connaissance profonde des marchés locaux, tout
@@ -159,13 +158,13 @@ export default function AboutPage() {
                 key={item.title}
                 className="p-6 bg-white border border-primary/10 hover:border-accent transition-colors"
               >
-                <div className="text-primary/60 mb-4">
+                <div className="text-primary mb-4">
                   <item.icon className="h-10 w-10" />
                 </div>
                 <h4 className="text-lg font-semibold text-primary mb-3">
                   {item.title}
                 </h4>
-                <p className="text-primary/60 text-sm leading-relaxed">
+                <p className="text-muted-foreground text-sm leading-relaxed">
                   {item.description}
                 </p>
               </MotionWrapper>

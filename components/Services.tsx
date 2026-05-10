@@ -6,17 +6,20 @@ import { Briefcase, TrendingUp, Monitor, Users } from "lucide-react";
 const services = [
   {
     title: "Conseil en management",
-    description: "Optimisez vos structures et vos processus pour une efficacité maximale.",
+    description:
+      "Optimisez vos structures et vos processus pour une efficacité maximale.",
     icon: Briefcase,
   },
   {
     title: "Structuration financière",
-    description: "Sécurisez vos investissements et optimisez votre gestion de trésorerie.",
+    description:
+      "Sécurisez vos investissements et optimisez votre gestion de trésorerie.",
     icon: TrendingUp,
   },
   {
     title: "Solutions informatiques",
-    description: "Accélérez votre transformation numérique avec des outils de pointe.",
+    description:
+      "Accélérez votre transformation numérique avec des outils de pointe.",
     icon: Monitor,
   },
   {
@@ -51,14 +54,14 @@ export function Services() {
             >
               {/* Subtle underline accent on hover */}
               <div className="absolute bottom-0 left-0 w-0 h-1 bg-accent transition-all duration-500 group-hover:w-full" />
-              
-              <div className="mb-6 p-3 rounded-full bg-primary/5 w-fit text-primary transition-colors group-hover:bg-accent group-hover:text-primary">
+
+              <div className="mb-6 p-3 rounded-full bg-primary/5 w-fit text-primary transition-colors group-hover:bg-primary/40 group-hover:text-primary">
                 <service.icon className="h-6 w-6" />
               </div>
               <h4 className="text-xl font-serif text-primary mb-4 group-hover:text-accent transition-colors">
                 {service.title}
               </h4>
-              <p className="text-primary/70 text-sm leading-relaxed font-sans font-light">
+              <p className="text-muted-foreground text-sm leading-relaxed font-sans font-light">
                 {service.description}
               </p>
             </motion.div>
