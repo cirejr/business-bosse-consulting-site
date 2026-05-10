@@ -76,7 +76,7 @@ export function ContactFormSection() {
     setSubmitStatus({ type: null, message: "" });
 
     try {
-      const response = await fetch("/api/contact", {
+      const response = await fetch("/api/contact/nodemailer", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
